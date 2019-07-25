@@ -1,0 +1,163 @@
+
+.node, .view {
+    background-color: #3E7E9C;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    position: absolute;
+    z-index: 11;
+    overflow: hidden;
+    min-width:80px;
+    min-height:30px;
+    width: auto;
+    border:1px solid #ccc;
+}
+
+.node .name, .view .name, .node li.jtk-draggable, .view li.jtk-draggable {
+    background-color: #3E7E9C;
+    color: #f7ebca;
+    cursor: move;
+    font-size: 13px;
+
+    padding: 6px;
+    display:flex;
+    align-items:center;
+}
+
+
+.node li.jtk-draggable, .view li.jtk-draggable {
+    min-width:100px;
+    border-radius:14px;
+}
+
+.node .name span, .view .name span {
+    cursor:pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.node .name .buttons, .view .name .buttons {
+    display:flex;
+    align-items: center;
+    cursor:pointer;
+}
+
+
+.node {
+    margin-bottom: 0;
+    min-width: 200px;
+    max-width: 300px;
+    max-width: 50%;
+}
+
+.node-columns {
+    margin:0;
+    padding:0;
+}
+
+.node-column {
+    list-style-type: none;
+    padding: 4px 6px;
+}
+
+
+.node-column-delete, .view-delete {
+    color: #407364;
+    padding: 2px;
+    cursor: pointer;
+    float: left;
+    font-size: 10px;
+    line-height: 10px;
+}
+
+
+.node-column-edit {
+    color: #407364;
+    float: right;
+    cursor: pointer;
+}
+
+.new-column, .delete, .node-column-delete {
+    -webkit-transition: background-color 0.15s ease-in;
+    -moz-transition: background-color 0.15s ease-in;
+    -o-transition: background-color 0.15s ease-in;
+    transition: background-color 0.15s ease-in;
+}
+
+.edit-name {
+    margin-right:7px;
+}
+
+.new-column:hover, .delete:hover, .edit-name:hover {
+    color: #ff8000;
+}
+
+.node-column-delete:hover {
+    color: #434343;
+}
+
+.node-column-type-varchar {
+    background-color: #cbeae1;
+}
+
+.node-column-type-integer {
+    background-color: #cbe6de;
+}
+
+.node-column-type-date {
+    background-color: #e5f5f0;
+}
+
+.node-column[primary-key='true'] {
+    background-color:#83b8a8;
+}
+
+.fa {
+    font-family: FontAwesome;
+}
+
+#node{
+    visibility: hidden;
+}
+
+/** JSPLUMB ARTEFACTS **/
+.jtk-connector {
+    z-index:1;
+}
+
+.demo {
+    text-align: center;
+}
+
+.list {
+    border: 1px solid #ccc;
+    width: 200px;
+    position:absolute;
+    padding:10px;
+
+}
+
+.list ul {
+    max-height:250px;
+    overflow:auto;
+    margin:0;
+    padding:0;
+}
+
+.list li {
+    background-color: #fff1c6;
+    margin-bottom:5px;
+}
+
+.jtk-drag-active {
+    background-color:#cbeae1 !important;
+}
+
+.jtk-drag-hover {
+    background-color:#5c96bc !important;
+    color:white;
+}
+
+[jtk-scrollable-list] {
+    position:relative;
+}

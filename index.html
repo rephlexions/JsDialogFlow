@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>DialogFlow</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+
+
+    <link rel="stylesheet" href="css/jsplumbtoolkit-defaults.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+
+</head>
+
+<body>
+    <div class="jtk-demo-canvas" id="canvas">
+
+        <!-- Hidden Template Node -->
+        <div class="node list list-lhs" id="node" >
+            <div class="name">
+                <div class="delete" title="Click to delete">
+                    <i class="fa fa-times"></i>
+                </div>
+                <span>Title</span>
+                <div class="buttons">
+                    <div class="edit-name" title="Click to edit node name">
+                        <i class="fa fa-pencil"></i>
+                    </div>
+                    <div class="new-column add" title="Click to add a new column">
+                        <i class="fa fa-plus"></i>
+                    </div>
+                    <div class="new-node add" title="Click to add a node">
+                        <i class="fa fa-plus-square"></i>
+                    </div>
+                </div>
+            </div>
+            <ul class="node-columns" issource="false">
+            </ul>
+        </div>
+
+        <div class="node list list-lhs" id="node1">
+            <div class="name">
+                <div class="delete" title="Click to delete">
+                    <i class="fa fa-times"></i>
+                </div>
+                <span>Title</span>
+                <div class="buttons">
+                    <div class="edit-name" title="Click to edit node name">
+                        <i class="fa fa-pencil"></i>
+                    </div>
+                    <div class="new-column add" title="Click to add a new column">
+                        <i class="fa fa-plus"></i>
+                    </div>
+                    <div class="new-node add" title="Click to add a node">
+                        <i class="fa fa-plus-square"></i>
+                    </div>
+                </div>
+            </div>
+            <ul class="node-columns">
+                <li class="node-column">
+                    <div class="node-column-edit">
+                        <i class="fa fa-pencil node-column-edit-icon"></i>
+                    </div>
+                    <div class="node-column-delete">
+                        <i class="fa fa-times node-column-delete-icon"></i>
+                    </div>
+                    <div><span>column text</span></div>
+                </li>
+
+            </ul>
+        </div>
+
+        </div>
+
+
+</body>
+<script src="js/jsplumb.js"></script>
+<script src="js/jsplumb.min.js"></script>
+<script src="js/plumb.js"></script>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+
+</html>
+
+<!--
+
+
+<div class="node node jtk-node jtk-managed jtk-draggable" data-jtk-node-id="book_author" id="jsPlumb_4_6"
+    style="left: 269.5px; top: -61.226px;">
+    <div class="name">
+        <div class="delete" title="Click to delete">
+            <i class="fa fa-times"></i>
+        </div>
+        <span>BookAuthor</span>
+        <div class="buttons">
+            <div class="edit-name" title="Click to edit node name">
+                <i class="fa fa-pencil"></i>
+            </div>
+            <div class="new-column add" title="Click to add a new column">
+                <i class="fa fa-plus"></i>
+            </div>
+        </div>
+    </div>
+    <ul class="node-columns">
+
+        <li class="node-column jtk-droppable jtk-managed jtk-endpoint-anchor jtk-connected"
+            primary-key="" data-port-id="book_id" id="jsPlumb_4_7">
+            <div class="node-column-edit">
+                <i class="fa fa-pencil node-column-edit-icon"></i>
+            </div>
+            <div class="node-column-delete">
+                <i class="fa fa-times node-column-delete-icon"></i>
+            </div>
+            <div><span>book_id</span></div>
+
+            <jtk-source port-id="book_id" scope="integer"
+                filter=".node-column-delete, .node-column-delete-icon, span, .node-column-edit, .node-column-edit-icon"
+                filter-exclude="true" jtk-processed="true"></jtk-source>
+
+            <jtk-target port-id="book_id" scope="integer" jtk-processed="true"></jtk-target>
+        </li>
+
+        <li class="node-column jtk-droppable jtk-managed jtk-endpoint-anchor jtk-connected"
+            primary-key="" data-port-id="author_id" id="jsPlumb_4_8">
+            <div class="node-column-edit">
+                <i class="fa fa-pencil node-column-edit-icon"></i>
+            </div>
+            <div class="node-column-delete">
+                <i class="fa fa-times node-column-delete-icon"></i>
+            </div>
+            <div><span>author_id</span></div>
+
+            <jtk-source port-id="author_id" scope="integer"
+                filter=".node-column-delete, .node-column-delete-icon, span, .node-column-edit, .node-column-edit-icon"
+                filter-exclude="true" jtk-processed="true"></jtk-source>
+
+            <jtk-target port-id="author_id" scope="integer" jtk-processed="true"></jtk-target>
+        </li>
+
+    </ul>
+</div>
+
+
+
+-->
