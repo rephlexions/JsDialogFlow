@@ -20,7 +20,7 @@
 <div class="jtk-demo-canvas" id="canvas">
 
     <!-- Hidden Node Template -->
-    <div class="node" id="node" >
+    <div class="node" id="node" istarget="true">
         <div class="name">
             <div class="delete" title="Click to delete">
                 <i class="fa fa-times"></i>
@@ -38,8 +38,15 @@
                 </div>
             </div>
         </div>
-        <ul class="node-columns" issource="false">
-        </ul>
+        <div class="node-element-list" issource="false">
+        </div>
+    </div>
+
+    <div id="node-element-text" class="node-element node-element-text">
+
+    </div>
+    <div id="node-element-edge" class="node-element node-element-edge" issource="true">
+
     </div>
 
 </div>

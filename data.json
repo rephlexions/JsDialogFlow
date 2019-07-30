@@ -58,14 +58,6 @@
           "elementData": "http://www.google.com",
           "localizedTitle": {"en": "Element 2b"},
           "localizedElementData": {"en": "http://www.google.com"}
-        },
-        {
-          "id": "2c",
-          "title": "Elemento 2c",
-          "type": "edge",
-          "elementData": "2",
-          "localizedTitle": {"en": "Element 2c"},
-          "localizedElementData": ""
         }
       ]
 

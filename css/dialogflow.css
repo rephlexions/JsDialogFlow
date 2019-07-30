@@ -50,6 +50,21 @@
     max-width: 50%;
 }
 
+
+
+.node-element {
+    margin: 2px;
+    padding: 5px;
+    background-color: #ccc;
+    border: solid 1px #222;
+    border-radius: 5px;
+}
+
+
+
+
+
+
 .node-columns {
     margin:0;
     padding:0;
