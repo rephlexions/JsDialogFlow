@@ -5,7 +5,7 @@ jsPlumb.ready(function () {
             zIndex: 2000
         },
         Connector: ["Bezier", {
-            curviness: 150
+            curviness: 100
         }],
         PaintStyle: {
             strokeWidth: 3,
@@ -13,12 +13,12 @@ jsPlumb.ready(function () {
 
         },
         Endpoint: ["Dot", {
-            radius: 5
+            radius: 10
         }],
         EndpointStyle: {
             fill: "#ffa500"
         },
-        
+
         /*
         ConnectionOverlays: [
             ["Arrow", {
@@ -32,16 +32,13 @@ jsPlumb.ready(function () {
         Container: "canvas"
     });
 
-    window.jsp = instance;
-
     instance.draggable(jsPlumb.getSelector(".node"));
 
     // TODO: refactor function
     function initAnchors() {
-
         var lists = jsPlumb.getSelector("ul");
         for (let i = 0; i < lists.length; i++) {
-            var items = lists[i].querySelectorAll('li')
+            var items = lists[i].querySelectorAll('.node-column')
             for (let j = 0; j < items.length; j++) {
                 var columnText = $('span').text();
                 instance.makeSource(items[j], {
@@ -80,8 +77,24 @@ jsPlumb.ready(function () {
         if (title == null || title == "") {
             alert("Title cannot be empty");
         } else {
-            newNode(title,e.offsetX, e.offsetY);
+            newNode(title, e.offsetX, e.offsetY);
         }
+    });
+
+    $(document.body).on('click', '.node-column-delete', function (e) {  
+        var column = $(this).parentsUntil($('.node-columns'));
+        console.log(column.html());
+        console.log(column.find('li'));
+        
+        jsPlumb.remove(column.find('li'));
+        jsPlumb.deleteConnectionsForElement(column.find('li'), true);
+    });
+
+    $(document.body).on('click', '.node-column-edit', function (e) {
+        var listElem = $(this).parentsUntil($('.node-columns'));
+        var span = $(listElem).find('.column-text').children('span');
+        var newMsg = prompt('Enter new message', span.text());
+        span.text(newMsg);        
     });
 
     // TODO: change counter after dev demo is done
@@ -89,8 +102,6 @@ jsPlumb.ready(function () {
     var newNode = function (title, x, y) {
         var newNode = $("#node").clone(true, true);
         newNode.find('span').text(title);
-        console.log(newNode.find('span').text(title));
-        
         newNode.attr("id", "node" + (i++));
         newNode.css('left', 250 + 'px');
         newNode.css('top', 150 + 'px');
@@ -119,7 +130,7 @@ jsPlumb.ready(function () {
             var editIcon = $('<i>').addClass('fa fa-pencil node-column-edit-icon');
             var nodeDelete = $('<div>').addClass('node-column-delete');
             var deleteIcon = $('<i>').addClass('fa fa-times node-column-delete-icon');
-            var msgDiv = $('<div>'),
+            var msgDiv = $('<div>').addClass('column-text'),
                 msgSpan = $('<span>');
             msgSpan.text(message);
 
@@ -130,6 +141,7 @@ jsPlumb.ready(function () {
             newColumn.append(nodeDelete);
             newColumn.append(msgDiv);
             list.append(newColumn);
+
 
             // TODO: refactor
             instance.makeSource(newColumn, {
@@ -143,7 +155,7 @@ jsPlumb.ready(function () {
                         id: "arrow"
                     }],
                     ['Label', {
-                        label: 'test',
+                        label: message,
                         id: "label"
                     }]
                 ]
