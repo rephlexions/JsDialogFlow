@@ -5,6 +5,8 @@
       "title": "Titolo 1",
       "parameter": "titolo1",
       "directAccess": false,
+      "positionX": "100",
+      "positionY": "100",
       "elements": [
         {
           "id": "1a",
@@ -38,6 +40,8 @@
       "title": "Titolo 2",
       "parameter": "titolo2",
       "directAccess": false,
+      "positionX": "400",
+      "positionY": "100",
       "elements": [
         {
           "id": "2a",

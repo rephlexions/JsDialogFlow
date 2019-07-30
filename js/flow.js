@@ -50,15 +50,27 @@ jsPlumb.ready(function () {
 
 
     drawNode = function (node) {
-        alert(node.title);
+        //alert(node.title);
 
-
+        createNode(node);
 
 
 
     }
 
 
+
+    createNode = function (node) {
+        var newNode = $("#node").clone(true, true);
+        newNode.find('.title').text(node.title);
+        newNode.attr("id", "node-" + node.id);
+        newNode.css('left', node.positionX + 'px');
+        newNode.css('top', node.positionY + 'px');
+        newNode.css('visibility', 'visible');
+        newNode.appendTo(instance.getContainer());
+        instance.draggable(newNode);
+        return (newNode);
+    };
 
 
 
