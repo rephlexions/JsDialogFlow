@@ -13,7 +13,7 @@
     border:1px solid #ccc;
 }
 
-.node .name, .view .name, .node li.jtk-draggable, .view li.jtk-draggable {
+.node .node-header, .view .node-header, .node li.jtk-draggable, .view li.jtk-draggable {
     background-color: #3E7E9C;
     color: #f7ebca;
     cursor: move;
@@ -30,13 +30,13 @@
     border-radius:14px;
 }
 
-.node .name span, .view .name span {
+.node .node-header span, .view .node-header span {
     cursor:pointer;
     margin-left: auto;
     margin-right: auto;
 }
 
-.node .name .buttons, .view .name .buttons {
+.node .node-header .buttons, .view .node-header .buttons {
     display:flex;
     align-items: center;
     cursor:pointer;
