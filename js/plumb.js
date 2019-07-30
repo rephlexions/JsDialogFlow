@@ -69,7 +69,9 @@ jsPlumb.ready(function () {
         }
     }
 
-    initAnchors();
+    //initAnchors();
+
+    jsPlumb.connect({"source": "node1",  "target": "node2" });
 
     // bind a click listener to "new-node"; add new node when this occurs.
     $(document.body).on('click', '.new-node', function (e) {

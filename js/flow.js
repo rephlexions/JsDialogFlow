@@ -60,13 +60,17 @@ jsPlumb.ready(function () {
     drawEdge = function (edge) {
         //alert(edge.source);
         //edge.anchors = ['Right', 'Left'];
+
+        alert($('#' + edge.source).html());
+
+
         edge.endpoint = "Rectangle";
         edge.endpointStyle= {"fill:": "black"}
         var common = {
             anchors: ['Right', 'Left']
         }
 
-        jsPlumb.connect(edge, common);
+        instance.connect(edge, common);
     }
 
 
