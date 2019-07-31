@@ -35,6 +35,7 @@ jsPlumb.ready(function () {
     instance.draggable(jsPlumb.getSelector(".node"));
 
     var nodes;
+    var edgeList = [];
     $.getJSON("data.json", function (data) {
 
         nodes = data.nodes;
@@ -46,7 +47,6 @@ jsPlumb.ready(function () {
         //alert(data);
     });
 
-    edgeList = [];
 
     drawNode = function (node) {
         //alert(node.title);
@@ -69,6 +69,7 @@ jsPlumb.ready(function () {
 
         instance.connect(edge, common);
     }
+   
 
 
 
@@ -134,8 +135,6 @@ jsPlumb.ready(function () {
         // get node number
         var patt = new RegExp("\\d+");
         var nodeNumber = patt.exec(nodeID);
-        console.log(nodeNumber);
-        
 
         var title = $('#title').val();
         var elementData = $('#elementData').val();
@@ -146,10 +145,10 @@ jsPlumb.ready(function () {
         var elementList = $(node).find('.node-element-list');
         for (let index = 0; index < nodes.length; index++) {
             if (nodes[index].id == nodeNumber[0]) {
-
+                
                 var currLength = nodes[index].elements.length;
+                
                 var element = {};
-
                 element['id'] = nodeNumber[0] + '-' + (++currLength);
                 element['title'] = title;
                 element['type'] = type;
@@ -161,15 +160,28 @@ jsPlumb.ready(function () {
                     'en': elementData
                 };
                 nodes[index].elements.push(element);
-                console.log(nodes);
-                var element = createElement(element);
-                if (element) {
-                    elementList.append(element);
+                //console.log(nodes);
+                var newElement = createElement(element);
+                if (newElement) {
+                    elementList.append(newElement);
+                    if(type == 'edge') {
+                        var last_element = edgeList[edgeList.length - 1];
+                        drawEdge(last_element);
+                        /*
+
+                        // TODO: temporary solution
+                        var common = {
+                            anchors: ['Right', 'Left'],
+                            endpoint:"Rectangle",
+                            endpointStyle:{ fill: "yellow" }
+                        }
+                        instance.connect({source: 'element-' + element['id'], target: 'node-' + element['elementData'], common});
+                        */
+                    }
                 }
             }
         }
     };
-
 
     dialog = $('#dialog-form').dialog({
         autoOpen: false,
@@ -196,7 +208,6 @@ jsPlumb.ready(function () {
         dialog.data('param', nodeID).dialog("open");
 
     });
-
 
 
 });
