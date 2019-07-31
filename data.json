@@ -1,35 +1,46 @@
 {
-  "nodes" : [
-    {
+  "nodes": [{
       "id": "1",
       "title": "Titolo 1",
       "parameter": "titolo1",
+      "graphInfo": {
+        "positionX": "100",
+        "positionY": "100"
+      },
       "directAccess": false,
-      "positionX": "100",
-      "positionY": "100",
-      "elements": [
-        {
-          "id": "1a",
+
+      "elements": [{
+          "id": "1-1",
           "title": "Elemento 1a",
           "type": "text",
           "elementData": "Questo è il messaggio del nodo 1a",
-          "localizedTitle": {"en": "Element 1a"},
-          "localizedElementData": {"en": "Questo è il messaggio del nodo 1a"}
+          "localizedTitle": {
+            "en": "Element 1a"
+          },
+          "localizedElementData": {
+            "en": "Questo è il messaggio del nodo 1a"
+          }
         },
         {
-          "id": "1b",
+          "id": "1-2",
           "title": "Elemento 1b",
           "type": "url",
           "elementData": "http://www.google.com",
-          "localizedTitle": {"en": "Element 1b"},
-          "localizedElementData": {"en": "http://www.google.com"}
+          "localizedTitle": {
+            "en": "Element 1b"
+          },
+          "localizedElementData": {
+            "en": "http://www.google.com"
+          }
         },
         {
-          "id": "1c",
+          "id": "1-3",
           "title": "Elemento 1c",
           "type": "edge",
           "elementData": "2",
-          "localizedTitle": {"en": "Element 1c"},
+          "localizedTitle": {
+            "en": "Element 1c"
+          },
           "localizedElementData": ""
         }
       ]
@@ -42,25 +53,31 @@
       "directAccess": false,
       "positionX": "400",
       "positionY": "100",
-      "elements": [
-        {
-          "id": "2a",
+      "elements": [{
+          "id": "2-1",
           "title": "Elemento 2a",
           "type": "text",
           "elementData": "Questo è il messaggio del nodo 2a",
-          "localizedTitle": {"en": "Element 1a"},
-          "localizedElementData": {"en": "Questo è il messaggio del nodo 2a"}
+          "localizedTitle": {
+            "en": "Element 1a"
+          },
+          "localizedElementData": {
+            "en": "Questo è il messaggio del nodo 2a"
+          }
         },
         {
-          "id": "2b",
+          "id": "2-2",
           "title": "Elemento 2b",
           "type": "url",
           "elementData": "http://www.google.com",
-          "localizedTitle": {"en": "Element 2b"},
-          "localizedElementData": {"en": "http://www.google.com"}
+          "localizedTitle": {
+            "en": "Element 2b"
+          },
+          "localizedElementData": {
+            "en": "http://www.google.com"
+          }
         }
       ]
-
     }
   ]
 }
