@@ -12,7 +12,7 @@ jsPlumb.ready(function () {
             stroke: "#0101f9",
 
         },
-        Endpoint: ["Dot", {
+        Endpoint: ["Rectangle", {
             radius: 10
         }],
         EndpointStyle: {
@@ -40,11 +40,11 @@ jsPlumb.ready(function () {
 
         nodes = data.nodes;
 
+        //  suspend drawing before data lading for better performance
+        jsPlumb.setSuspendDrawing(true);
         nodes.forEach(drawNode);
-
         edgeList.forEach(drawEdge);
-
-        //alert(data);
+        jsPlumb.setSuspendDrawing(false, true);
     });
 
 
@@ -59,12 +59,16 @@ jsPlumb.ready(function () {
 
         //alert($('#' + edge.source).html());
 
-        edge.endpoint = "Rectangle";
-        edge.endpointStyle = {
-            "fill:": "yellow"
-        }
+        edge.endpoint = "Dot";
         var common = {
-            anchors: ['Right', 'Left']
+            anchors: ['Right', 'Left'],
+            detachable:false,
+            paintStyle:{ stroke:"lightblue", strokeWidth:5 },
+            endpointStyles:[ 
+                { fill:"red", outlineStroke:"black", outlineWidth:1, radius: 7 },
+                { fill:"green", radius: 7}
+            ],
+            hoverPaintStyle:{ stroke:"blue" },
         }
 
         instance.connect(edge, common);
@@ -123,7 +127,7 @@ jsPlumb.ready(function () {
         }
     };
 
-
+    // TODO: maybe refactor a bit :)
     addElement = function (nodeID) {
         var type, radios = document.getElementsByName('type');
         for (var i = 0, length = radios.length; i < length; i++) {
@@ -192,6 +196,7 @@ jsPlumb.ready(function () {
             'Add': function () {
                 var param = $('#dialog-form').data('param');
                 addElement(param);
+                //dialog.dialog('close');
             },
             Cancel: function () {
                 dialog.dialog('close');
@@ -208,6 +213,5 @@ jsPlumb.ready(function () {
         dialog.data('param', nodeID).dialog("open");
 
     });
-
-
+    
 });

@@ -5,7 +5,7 @@
     cursor: pointer;
     font-size: 12px;
     position: absolute;
-    z-index: 11;
+    z-index: 2;
     overflow: hidden;
     min-width:80px;
     min-height:30px;
@@ -185,4 +185,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;    
+}
+.jtk-endpoint{
+    z-index: 3;
 }
