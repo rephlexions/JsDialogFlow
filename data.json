@@ -1,5 +1,6 @@
 {
-  "nodes": [{
+  "nodes": [
+    {
       "id": "1",
       "title": "Titolo 1",
       "parameter": "titolo1",

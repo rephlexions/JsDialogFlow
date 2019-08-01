@@ -45,31 +45,27 @@ jsPlumb.ready(function () {
         nodes.forEach(drawNode);
         edgeList.forEach(drawEdge);
         jsPlumb.setSuspendDrawing(false, true);
+
     });
-    
+
     // TODO: Javascript doesnt support writing to file for security reasons.
     //       The data should be POSTed to a server that executes the writing. 
-    $('#saveFLow').button().on('click', function () {  
+    $('#saveFLow').button().on('click', function () {
         getPosition(nodes);
-        console.log(nodes);
     });
-    
 
     getPosition = function (nodes) {
-
-        var nodesPosition = [];
-
-        $('#canvas').children('.node').each(function () {
-            var pos = $(this).position(); 
-            nodesPosition.push(pos)
-        });
-
         for (let i = 0; i < nodes.length; i++) {
-            //console.log(nodesPosition[i+1].top);
+            var node = $('#node-' + nodes[i].id);
+            if (node) {
+                var pos = node.position()
+                nodes[i].graphInfo.top = pos.top.toString();
+                nodes[i].graphInfo.left = pos.left.toString();
+            } else {
+                // TODO: the searched node doesnt exist in the DOM. Maybe draw it? 
+            }
             console.log(nodes[i].graphInfo.top);
             console.log(nodes[i].graphInfo.left);
-            nodes[i].graphInfo.top = nodesPosition[i+1].top.toString();
-            nodes[i].graphInfo.left = nodesPosition[i+1].left.toString();
         }
     }
 
@@ -88,20 +84,34 @@ jsPlumb.ready(function () {
         edge.endpoint = "Dot";
         var common = {
             anchors: ['Right', 'Left'],
-            detachable:false,
-            paintStyle:{ stroke:"lightblue", strokeWidth:5 },
-            endpointStyles:[ 
-                { fill:"red", outlineStroke:"black", outlineWidth:1, radius: 7 },
-                { fill:"green", radius: 7}
+            detachable: false,
+            paintStyle: {
+                stroke: "lightblue",
+                strokeWidth: 5
+            },
+            endpointStyles: [{
+                    fill: "red",
+                    outlineStroke: "black",
+                    outlineWidth: 1,
+                    radius: 7
+                },
+                {
+                    fill: "green",
+                    radius: 7
+                }
             ],
-            hoverPaintStyle:{ stroke:"blue" },
+            hoverPaintStyle: {
+                stroke: "blue"
+            },
         }
 
         instance.connect(edge, common);
     }
-   
+
 
     createNode = function (node) {
+        console.log(node);
+
         var newNode = $("#node").clone(true, true);
         newNode.find('.title').text(node.title);
         newNode.attr("id", "node-" + node.id);
@@ -149,7 +159,8 @@ jsPlumb.ready(function () {
         }
     };
 
-    // TODO: maybe refactor a bit :)
+    // TODO: Javascript doesnt support writing to file for security reasons.
+    //       The data should be POSTed to a server that executes the writing. 
     addElement = function (nodeID) {
         var type, radios = document.getElementsByName('type');
         for (var i = 0, length = radios.length; i < length; i++) {
@@ -165,15 +176,13 @@ jsPlumb.ready(function () {
         var title = $('#title').val();
         var elementData = $('#elementData').val();
 
-        //var str = "{\"id\": " + id + ",\"title\":" + title + ",\"type\": " + type + ",\"elementData\": " + elementData + ",\"localizedTitle\": {\"en\":" + title + "},\"localizedElementData\": {\"en\":" + elementData + "}}";
-
         var node = document.getElementById(nodeID);
         var elementList = $(node).find('.node-element-list');
         for (let index = 0; index < nodes.length; index++) {
             if (nodes[index].id == nodeNumber[0]) {
-                
+
                 var currLength = nodes[index].elements.length;
-                
+
                 var element = {};
                 element['id'] = nodeNumber[0] + '-' + (++currLength);
                 element['title'] = title;
@@ -186,23 +195,37 @@ jsPlumb.ready(function () {
                     'en': elementData
                 };
                 nodes[index].elements.push(element);
-                //console.log(nodes);
                 var newElement = createElement(element);
                 if (newElement) {
-                    elementList.append(newElement);
-                    if(type == 'edge') {
-                        var last_element = edgeList[edgeList.length - 1];
-                        drawEdge(last_element);
-                        /*
-                        // TODO: temporary solution
-                        var common = {
-                            anchors: ['Right', 'Left'],
-                            endpoint:"Rectangle",
-                            endpointStyle:{ fill: "yellow" }
+                    if (type == 'edge' && !(isNaN(elementData))) {
+                        if (elementData > nodes.length) {
+                            //var title = prompt('Insert new node title', '');
+                            var newNode = {};
+                            var newNodePos = {};
+                            newNodePos['top'] = '100';
+                            newNodePos['left'] = '400';
+                            newNode['id'] = elementData;
+                            newNode['title'] = title;
+                            newNode['parameter'] = title.replace(' ', '').toLowerCase();
+                            newNode['graphInfo'] = newNodePos;
+                            newNode['directAccess'] = false;
+                            newNode['elements'] = [{}];
+                            nodes.push(newNode)
+                            console.log(nodes);
+                            createNode(newNode);
+                            elementList.append(newElement);
+                            var last_element = edgeList[edgeList.length - 1];
+                            drawEdge(last_element);
+                        } else {
+                            elementList.append(newElement);
+                            var last_element = edgeList[edgeList.length - 1];
+                            drawEdge(last_element);
                         }
-                        instance.connect({source: 'element-' + element['id'], target: 'node-' + element['elementData'], common});
-                        */
                     }
+
+                    // TODO: check if url is valid using RegExp
+                    // var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+
                 }
             }
         }
@@ -217,7 +240,7 @@ jsPlumb.ready(function () {
             'Add': function () {
                 var param = $('#dialog-form').data('param');
                 addElement(param);
-                //dialog.dialog('close');
+                dialog.dialog('close');
             },
             Cancel: function () {
                 dialog.dialog('close');
