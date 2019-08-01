@@ -46,6 +46,32 @@ jsPlumb.ready(function () {
         edgeList.forEach(drawEdge);
         jsPlumb.setSuspendDrawing(false, true);
     });
+    
+    // TODO: Javascript doesnt support writing to file for security reasons.
+    //       The data should be POSTed to a server that executes the writing. 
+    $('#saveFLow').button().on('click', function () {  
+        getPosition(nodes);
+        console.log(nodes);
+    });
+    
+
+    getPosition = function (nodes) {
+
+        var nodesPosition = [];
+
+        $('#canvas').children('.node').each(function () {
+            var pos = $(this).position(); 
+            nodesPosition.push(pos)
+        });
+
+        for (let i = 0; i < nodes.length; i++) {
+            //console.log(nodesPosition[i+1].top);
+            console.log(nodes[i].graphInfo.top);
+            console.log(nodes[i].graphInfo.left);
+            nodes[i].graphInfo.top = nodesPosition[i+1].top.toString();
+            nodes[i].graphInfo.left = nodesPosition[i+1].left.toString();
+        }
+    }
 
 
     drawNode = function (node) {
@@ -75,15 +101,12 @@ jsPlumb.ready(function () {
     }
    
 
-
-
     createNode = function (node) {
         var newNode = $("#node").clone(true, true);
         newNode.find('.title').text(node.title);
         newNode.attr("id", "node-" + node.id);
-        // TODO: fix position
-        newNode.css('left', node.positionX + 'px');
-        newNode.css('top', node.positionY + 'px');
+        newNode.css('top', node.graphInfo.top + 'px');
+        newNode.css('left', node.graphInfo.left + 'px');
         newNode.css('visibility', 'visible');
 
 
@@ -121,7 +144,6 @@ jsPlumb.ready(function () {
             edge.source = "element-" + element.id;
             edge.target = "node-" + element.elementData;
             edgeList.push(edge)
-            console.log(edgeList);
 
             return newElement;
         }
@@ -172,7 +194,6 @@ jsPlumb.ready(function () {
                         var last_element = edgeList[edgeList.length - 1];
                         drawEdge(last_element);
                         /*
-
                         // TODO: temporary solution
                         var common = {
                             anchors: ['Right', 'Left'],
@@ -213,5 +234,6 @@ jsPlumb.ready(function () {
         dialog.data('param', nodeID).dialog("open");
 
     });
-    
+
+
 });
