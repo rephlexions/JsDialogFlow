@@ -1,11 +1,12 @@
 {
-  "nodes": [{
+  "nodes": [
+    {
       "id": "1",
       "title": "Titolo 1",
       "parameter": "titolo1",
       "graphInfo": {
-        "positionX": "100",
-        "positionY": "100"
+        "top": "100",
+        "left": "100"
       },
       "directAccess": false,
 
@@ -50,9 +51,11 @@
       "id": "2",
       "title": "Titolo 2",
       "parameter": "titolo2",
+      "graphInfo": {
+        "top": "170",
+        "left": "400"
+      },
       "directAccess": false,
-      "positionX": "400",
-      "positionY": "100",
       "elements": [{
           "id": "2-1",
           "title": "Elemento 2a",
@@ -67,6 +70,41 @@
         },
         {
           "id": "2-2",
+          "title": "Elemento 2b",
+          "type": "edge",
+          "elementData": "3",
+          "localizedTitle": {
+            "en": "Element 2b"
+          },
+          "localizedElementData": {
+            "en": "http://www.google.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Titolo 3",
+      "parameter": "titolo3",
+      "graphInfo": {
+        "top": "300",
+        "left": "700"
+      },
+      "directAccess": false,
+      "elements": [{
+          "id": "3-1",
+          "title": "Elemento 2a",
+          "type": "text",
+          "elementData": "Questo è il messaggio del nodo 2a",
+          "localizedTitle": {
+            "en": "Element 1a"
+          },
+          "localizedElementData": {
+            "en": "Questo è il messaggio del nodo 2a"
+          }
+        },
+        {
+          "id": "3-2",
           "title": "Elemento 2b",
           "type": "url",
           "elementData": "http://www.google.com",
