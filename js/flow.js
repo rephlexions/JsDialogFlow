@@ -198,8 +198,7 @@ jsPlumb.ready(function () {
                 var newElement = createElement(element);
                 if (newElement) {
                     if (type == 'edge' && !(isNaN(elementData))) {
-                        if (elementData > nodes.length) {
-                            //var title = prompt('Insert new node title', '');
+                        if (!searchNode(elementData, nodes)) {
                             var newNode = {};
                             var newNodePos = {};
                             newNodePos['top'] = '100';
@@ -260,3 +259,12 @@ jsPlumb.ready(function () {
 
 
 });
+
+// search for a specific node. Return true in node exists
+function searchNode(nameKey, myArray) {
+    for (var i = 0; i < myArray.length; i++) {
+        if (myArray[i].id === nameKey) {
+            return true;
+        }
+    }
+}
